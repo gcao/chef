@@ -3,25 +3,14 @@ require 'json'
 
 dna = {
   :user => "gcao",
-  :mysql_root_pass => "REPLACE_ME!",
+  :mysql_root_pass => %x(msp).strip,
   
   :users =>  [
-    {
-      :username => "gcao",
-      :password => "REPLACE_ME!",
-      :authorized_keys => "ssh-rsa ACfSXuMTJvY6Ys6zdxRljhzBbh/XHU8= bob@bob.com",
-      :shell => "/bin/bash",
-      :gid => 1000,
-      :uid => 1000,
-      :sudo => true,
-      :custom_files  => []
-    },
-    
     {
       :username => "gocool_app",
       :gid => 1101,
       :uid => 1101,
-      :authorized_keys => ["ssh-rsa ACfSXuMTJvY6Ys6zdxRljhzBbh/XHU8= bob@bob.com", "ssh-rsa ACfSXuMTJvY6Ys6zdxRljhzBbh/XHU8= cindy@bob.com"],
+      :authorized_keys => [],
       :shell => "/bin/bash",
     }
   ],
