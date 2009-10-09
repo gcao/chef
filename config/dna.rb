@@ -12,6 +12,13 @@ dna = {
       :uid => 1101,
       :authorized_keys => [],
       :shell => "/bin/bash",
+    },
+    {
+      :username => "gcao",
+      :gid => 1102,
+      :uid => 1102,
+      :authorized_keys => [],
+      :shell => "/bin/bash",
     }
   ],
   
@@ -63,7 +70,7 @@ dna = {
     "logrotate",
     # "nginx",
     "memcached",
-    "cron",
+    # "cron",
     "gems",
     "rack_apps"
   ]

@@ -21,22 +21,25 @@ ec2-authorize default -p 80
 
 ec2-run-instances ami-71fd1a18 -k ec2-keypair
 ec2-describe-instances
-The public domain name is something like ec2-XXX-XXX-XXX-XXX.compute-1.amazonaws.com
+(it might take a couple minutes before public domain name etc shows up)
+The public domain name is something like ec2-XXX-XXX-XXX-XXX.compute-1.amazonaws.com 
+
+2.1 Replace domain name in ami_host shell script
 
 3. Connect to EC2 instance
 
-ssh -i ~/.ssh/ec2-keypair root@INSTANCE_DOMAIN_NAME
+ssh -i ~/.ssh/ec2-keypair root@`ami_host`
 logout
 ssh-add ~/.ssh/ec2-keypair    # Phew, Now you don't have to use the -i option again (until you restart you computer)
 
 4. Chef bootstrap
 
-scp ~/proj/chef/chef-bootstrap root@INSTANCE_DOMAIN_NAME:/tmp
-ssh root@INSTANCE_DOMAIN_NAME "ruby /tmp/chef-bootstrap"
+scp ~/proj/chef/chef-bootstrap root@`ami_host`:/tmp
+ssh root@`ami_host` "ruby /tmp/chef-bootstrap"
 
 5. Run chef
 
-cd ~/proj/chef && rake cook server=root@INSTANCE_DOMAIN_NAME
+cd ~/proj/chef && rake cook server=root@`ami_host`
 
 6. Deploy rails application
 
@@ -44,3 +47,34 @@ Update RAILS_APP/config/deploy.rb to match what is specified in dna.rb
 cap deploy:setup
 cap deploy:start
 cap deploy:migrations
+
+7. Terminate EC2 instance
+
+ec2-terminate-instances <AMI_INSTANCE_ID>
+
+=============================
+
+If you see error below
+  /usr/lib/ruby/1.8/pathname.rb:709:in `relative_path_from': different prefix: "/" and "." (ArgumentError)
+  from /usr/lib/ruby/gems/1.8/gems/chef-0.7.12/lib/chef/provider/template.rb:57:in `action_create'
+Follow instructions in http://tickets.opscode.com/browse/CHEF-550 to modify template.rb (on EC2 host)
+
+If you see error below (related to sshd)
+  /usr/lib/ruby/gems/1.8/gems/chef-0.7.12/lib/chef/provider/service/simple.rb:60:in `close': closed stream (IOError)
+  from /usr/lib/ruby/gems/1.8/gems/chef-0.7.12/lib/chef/provider/service/simple.rb:60:in `load_current_resource' 
+Comment out 'stdin.close' in .../provider/service/simple.rb
+
+If you see error below
+  DEBUG: STDERR: mv: cannot move `/var/lib/mysql' to `/db/mysql': No such file or directory
+  DEBUG: ---- End output of mv /var/lib/mysql /db/mysql ----
+  DEBUG: Ran mv /var/lib/mysql /db/mysql returned 1
+  ERROR: execute[install-mysql] (/etc/chef/cookbooks/mysql/recipes/default.rb line 64) had an error:
+  mv /var/lib/mysql /db/mysql returned 1, expected 0
+Create dir /db
+
+If you see error below
+  DEBUG: Cron empty for 'mr_app'
+  ERROR: cron[a_dumb_task] (/etc/chef/cookbooks/cron/recipes/default.rb line 7) had an error:
+  Broken pipe
+  from /usr/lib/ruby/gems/1.8/gems/chef-0.7.12/lib/chef/provider/cron.rb:146:in `puts'
+Comment out 'cron' in recipes in chef/config/dna.rb (in this project)
