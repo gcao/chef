@@ -1,0 +1,8 @@
+Alias /jsgameviewer <%= @params[:docroot] %>
+<Directory "<%= @params[:docroot] %>">
+  DirectoryIndex index.html,index.php
+  AllowOverride All
+  Options ExecCGI
+  Order allow,deny
+  Allow from all
+</Directory>
