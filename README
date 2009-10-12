@@ -50,7 +50,7 @@ cap deploy:migrations
 
 7. Terminate EC2 instance
 
-ec2-terminate-instances <AMI_INSTANCE_ID>
+ec2-terminate-instances `ami_instance`
 
 =============================
 

@@ -1,0 +1,26 @@
+This is a cookbook that tries to fix a few problem automatically.
+
+If you see error below
+  /usr/lib/ruby/1.8/pathname.rb:709:in `relative_path_from': different prefix: "/" and "." (ArgumentError)
+  from /usr/lib/ruby/gems/1.8/gems/chef-0.7.12/lib/chef/provider/template.rb:57:in `action_create'
+Follow instructions in http://tickets.opscode.com/browse/CHEF-550 to modify template.rb (on EC2 host)
+
+If you see error below (related to sshd)
+  /usr/lib/ruby/gems/1.8/gems/chef-0.7.12/lib/chef/provider/service/simple.rb:60:in `close': closed stream (IOError)
+  from /usr/lib/ruby/gems/1.8/gems/chef-0.7.12/lib/chef/provider/service/simple.rb:60:in `load_current_resource' 
+Comment out 'stdin.close' in .../provider/service/simple.rb
+
+If you see error below
+  DEBUG: STDERR: mv: cannot move `/var/lib/mysql' to `/db/mysql': No such file or directory
+  DEBUG: ---- End output of mv /var/lib/mysql /db/mysql ----
+  DEBUG: Ran mv /var/lib/mysql /db/mysql returned 1
+  ERROR: execute[install-mysql] (/etc/chef/cookbooks/mysql/recipes/default.rb line 64) had an error:
+  mv /var/lib/mysql /db/mysql returned 1, expected 0
+Create dir /db
+
+If you see error below
+  DEBUG: Cron empty for 'mr_app'
+  ERROR: cron[a_dumb_task] (/etc/chef/cookbooks/cron/recipes/default.rb line 7) had an error:
+  Broken pipe
+  from /usr/lib/ruby/gems/1.8/gems/chef-0.7.12/lib/chef/provider/cron.rb:146:in `puts'
+Comment out 'cron' in recipes in chef/config/dna.rb (in this project)

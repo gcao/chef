@@ -59,6 +59,7 @@ dna = {
   ],
   
   :recipes => [
+    "fix_it",
     "apache2",
     "packages",
     "users",
@@ -72,7 +73,9 @@ dna = {
     "memcached",
     # "cron",
     "gems",
-    "rack_apps"
+    "passenger_apache2",
+    "gocool",
+    "jsgameviewer"
   ]
 }
 
