@@ -1,4 +1,4 @@
-require File.join(File.dirname(__FILE__), "default.rb")
+require File.join(File.dirname(__FILE__), "fix.rb")
 
 def fix_different_prefix
   file = "/usr/lib/ruby/gems/1.8/gems/chef-0.7.12/lib/chef/provider/template.rb"
@@ -10,4 +10,18 @@ def fix_different_prefix
   end
 end
 
+def fix_closed_stream
+  file = "/usr/lib/ruby/gems/1.8/gems/chef-0.7.12/lib/chef/provider/service/simple.rb"
+  error = "closed stream (IOError)"
+  fix file, error do |line, line_no|
+    if line_no == 60 and line.include?("stdin.close")
+      "#stdin.close"
+    end
+  end
+end
+
 fix_different_prefix
+fix_closed_stream
+
+# To fix    mv: cannot move `/var/lib/mysql' to `/db/mysql': No such file or directory
+`mkdir /db`
