@@ -19,18 +19,16 @@ ec2-authorize default -p 80
 
 2. Start EC2 instance
 
-ec2-run-instances ami-71fd1a18 -k ec2-keypair
-ec2-describe-instances
-(it might take a couple minutes before public domain name etc shows up)
-The public domain name is something like ec2-XXX-XXX-XXX-XXX.compute-1.amazonaws.com 
+start_instance
 
 2.1 Replace domain name in ami_host shell script
 
 3. Connect to EC2 instance
 
-ssh -i ~/.ssh/ec2-keypair root@`ami_host`
-logout
-ssh-add ~/.ssh/ec2-keypair    # Phew, Now you don't have to use the -i option again (until you restart you computer)
+ssh -i ~/.ssh/ec2-keypair root@`ami_host` exit
+ssh-add ~/.ssh/ec2-keypair    
+
+# Phew, Now you don't have to use the -i option again (until you restart you computer)
 
 4. Chef bootstrap
 
@@ -50,7 +48,7 @@ cap deploy:migrations
 
 7. Terminate EC2 instance
 
-ec2-terminate-instances `ami_instance`
+stop_instance
 
 =============================
 

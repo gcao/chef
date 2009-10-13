@@ -27,12 +27,21 @@ dna = {
   
   :gems => [
     "rake", 
-    {:name => "mysql", :version => "2.7"}
+    {:name => "mysql", :version => "2.7"},
+    "calendar_date_select",
+    "thoughtbot-paperclip",
+    "haml",
+    'chriseppstein-compass',
+    'mislav-will_paginate'
   ],
   
   :gocool => {
     :rails_root => "/data/apps/gocool",
     :rails_env => "production"
+  },
+  
+  :jsgameviewer => {
+    :docroot => "/data/jsgameviewer"
   },
 
   :recipes => [
