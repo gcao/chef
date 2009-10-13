@@ -20,6 +20,7 @@ def fix_closed_stream
   end
 end
 
+`gem source -a http://gems.github.com`
 fix_different_prefix
 fix_closed_stream
 

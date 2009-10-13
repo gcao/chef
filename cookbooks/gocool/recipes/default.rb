@@ -18,7 +18,7 @@ web_app "gocool" do
   template "gocool.conf.erb"
   docroot node[:gocool][:rails_root] + "/public"
   server_name node[:fqdn]
-  rails_env = node[:gocool][:rails_env]
+  rails_env node[:gocool][:rails_env]
 end
 
 # service "apache2" do

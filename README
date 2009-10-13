@@ -25,7 +25,7 @@ start_instance
 
 3. Connect to EC2 instance
 
-ssh -i ~/.ssh/ec2-keypair root@`ami_host` exit
+ssh -i ~/.ssh/ec2-keypair root@`ami_host` echo DONE
 ssh-add ~/.ssh/ec2-keypair    
 
 # Phew, Now you don't have to use the -i option again (until you restart you computer)
