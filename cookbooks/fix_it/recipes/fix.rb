@@ -25,6 +25,10 @@ def fix file, error
     end
   end
   
-  `cp -f #{backup_file} #{file}` unless fixed
+  unless fixed
+    puts skip_fix_disclaimer
+    puts "Expected line no and pattern are not found."
+    `cp -f #{backup_file} #{file}` 
+  end
 end
 

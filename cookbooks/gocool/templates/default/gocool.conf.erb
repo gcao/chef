@@ -1,12 +1,10 @@
 <VirtualHost *:80>
-  ServerName <%= @params[:server_name] %>
-  ServerAlias <% @params[:server_aliases].each do |a| %><%= "#{a}" %> <% end %>
+  ServerName localhost
   DocumentRoot <%= @params[:docroot] %>
 
-  RailsBaseURI /
   RailsEnv <%= @params[:rails_env] %>
   RailsAllowModRewrite on
-  PassengerMaxPoolSize <%= @node[:rails][:max_pool_size] %>
+  PassengerMaxPoolSize 20
 
   <Directory <%= @params[:docroot] %>>
     Options FollowSymLinks
@@ -16,6 +14,6 @@
   </Directory>
 
   LogLevel info
-  ErrorLog <%= @node[:apache][:log_dir] %>/<%= @params[:name] %>-error.log
-  CustomLog <%= @node[:apache][:log_dir] %>/<%= @params[:name] %>-access.log combined
+  ErrorLog <%= @node[:apache][:log_dir] %>/gocool-error.log
+  CustomLog <%= @node[:apache][:log_dir] %>/gocool-access.log combined
 </VirtualHost>

@@ -3,7 +3,7 @@ require 'json'
 
 dna = {
   :user => "gcao",
-  :mysql_root_pass => %x(msp).strip,
+  :mysql_root_pass => 'MYSQLROOTPASS',
   
   :users =>  [
     {
@@ -25,21 +25,16 @@ dna = {
   :packages => [
   ],
   
-  :applications => [
-    {
-      :name => "gocool",
-      :server_names => "_",
-      :ports => [4000, 4001],
-      :user => "gocool_app",
-      :group => "gocool_app"
-    }
-  ],
-  
   :gems => [
     "rake", 
     {:name => "mysql", :version => "2.7"}
   ],
-    
+  
+  :gocool => {
+    :rails_root => "/data/apps/gocool",
+    :rails_env => "production"
+  },
+
   :recipes => [
     "fix_it",
     "apache2",
