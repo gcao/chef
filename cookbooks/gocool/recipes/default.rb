@@ -10,6 +10,17 @@ template "/tmp/empty-gocool-db.sql" do
   source "empty-db.sql.erb"
 end
 
+shared_config_dir = node[:gocool][:home] + "/shared/config"
+`mkdir -p #{shared_config_dir}`
+
+template shared_config_dir + "/database.yml" do
+  source "database.yml.erb"
+  variables(
+    :username => 'root',
+    :password => node[:mysql_root_pass]
+  )
+end
+
 execute "create-empty-db-for-gocool" do
   command "mysql -u root -p#{node[:mysql_root_pass]} < /tmp/empty-gocool-db.sql"
 end

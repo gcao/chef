@@ -3,7 +3,7 @@ require 'json'
 
 dna = {
   :user => "gcao",
-  :mysql_root_pass => 'MYSQLROOTPASS',
+  :mysql_root_pass => `msp`.strip,
   
   :users =>  [
     {
@@ -36,12 +36,13 @@ dna = {
   ],
   
   :gocool => {
-    :rails_root => "/data/apps/gocool",
+    :home => "/data/apps/gocool",
+    :rails_root => "/data/apps/gocool/releases/current",
     :rails_env => "production"
   },
   
   :jsgameviewer => {
-    :docroot => "/data/jsgameviewer"
+    :docroot => "/data/apps/jsgameviewer/releases/current"
   },
 
   :recipes => [
