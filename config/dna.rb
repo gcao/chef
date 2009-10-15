@@ -37,7 +37,7 @@ dna = {
   
   :gocool => {
     :home => "/data/apps/gocool",
-    :rails_root => "/data/apps/gocool/releases/current",
+    :rails_root => "/data/apps/gocool/current",
     :rails_env => "production"
   },
   

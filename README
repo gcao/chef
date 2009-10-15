@@ -53,6 +53,13 @@ stop_instance
 
 =============================
 
+Problems:
+default site is enabled (/etc/apache2/sites-enabled/000-default)
+/data/apps/gocool/releases is not created
+database is not created? Mysql::Error: Table 'gocool_production.games' doesn't exist: SHOW FIELDS FROM `games`
+
+=============================
+
 If you see error below
   /usr/lib/ruby/1.8/pathname.rb:709:in `relative_path_from': different prefix: "/" and "." (ArgumentError)
   from /usr/lib/ruby/gems/1.8/gems/chef-0.7.12/lib/chef/provider/template.rb:57:in `action_create'
