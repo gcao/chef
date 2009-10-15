@@ -1,5 +1,4 @@
 include_recipe "rails"
-# include_recipe "passenger"
 
 # Mysql setup
 # -----------
@@ -15,6 +14,7 @@ shared_config_dir = node[:gocool][:home] + "/shared/config"
 
 template shared_config_dir + "/database.yml" do
   source "database.yml.erb"
+  mode 0644
   variables(
     :username => 'root',
     :password => node[:mysql_root_pass]
@@ -23,6 +23,11 @@ end
 
 execute "create-empty-db-for-gocool" do
   command "mysql -u root -p#{node[:mysql_root_pass]} < /tmp/empty-gocool-db.sql"
+end
+
+puts "===================== disable default site ====================="
+apache_site "default" do
+  enable false
 end
 
 web_app "gocool" do

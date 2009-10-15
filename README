@@ -16,6 +16,7 @@ ec2-add-keypair ec2-keypair > ~/.ssh/ec2-keypair
 chmod 600 ~/.ssh/ec2-keypair
 ec2-authorize default -p 22
 ec2-authorize default -p 80
+ssh-add ~/.ssh/ec2-keypair
 
 2. Start EC2 instance
 
@@ -25,8 +26,8 @@ start_instance
 
 3. Connect to EC2 instance
 
-ssh -i ~/.ssh/ec2-keypair root@`ami_host` echo DONE
-ssh-add ~/.ssh/ec2-keypair    
+# ssh -i ~/.ssh/ec2-keypair root@`ami_host` echo DONE   <= old?
+ssh root@`ami_host` echo DONE
 
 # Phew, Now you don't have to use the -i option again (until you restart you computer)
 
