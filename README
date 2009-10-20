@@ -22,11 +22,15 @@ ssh-add ~/.ssh/ec2-keypair
 
 start_instance
 
-2.1 Replace domain name in ami_host shell script
+2.1 Allocate elastic IP (through AWS Management Console)
+2.2 Associate IP to running instance
+2.3 Change A record on register.com
+2.4 Run below command to update ami_host 
+
+describe_instance
 
 3. Connect to EC2 instance
 
-# ssh -i ~/.ssh/ec2-keypair root@`ami_host` echo DONE   <= old?
 ssh root@`ami_host` echo DONE
 
 # Phew, Now you don't have to use the -i option again (until you restart you computer)
@@ -51,12 +55,21 @@ cap deploy:migrations
 
 stop_instance
 
+8. Elastic IP
+
+Release IP after instance is terminated (otherwise it costs $0.01/hour)
+
 =============================
 
 Problems:
-default site is enabled (/etc/apache2/sites-enabled/000-default)
-/data/apps/gocool/releases is not created
-database is not created? Mysql::Error: Table 'gocool_production.games' doesn't exist: SHOW FIELDS FROM `games`
+* default site is enabled (/etc/apache2/sites-enabled/000-default)
+* /data/apps/gocool/releases is not created
+
+* database is not created? Mysql::Error: Table 'gocool_production.games' doesn't exist: SHOW FIELDS FROM `games`
+This is caused by active_scaffold, need to investigate
+
+* Rails Error: Unable to access log file. Please ensure that /data/apps/gocool/releases/20091020122330/log/production.log exists and is chmod 0666. The log level has been raised to WARN and the output directed to STDERR until the problem is fixed.
+Use different log file location in application
 
 =============================
 

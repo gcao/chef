@@ -32,7 +32,9 @@ dna = {
     "thoughtbot-paperclip",
     "haml",
     'chriseppstein-compass',
-    'mislav-will_paginate'
+    'mislav-will_paginate',
+    'rspec',
+    'SyslogLogger'
   ],
   
   :gocool => {
@@ -42,7 +44,8 @@ dna = {
   },
   
   :jsgameviewer => {
-    :docroot => "/data/apps/jsgameviewer/releases/current"
+    :home => "/data/apps/jsgameviewer",
+    :docroot => "/data/apps/jsgameviewer/current"
   },
 
   :recipes => [
