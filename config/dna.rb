@@ -19,6 +19,13 @@ dna = {
       :uid => 1101,
       :authorized_keys => [],
       :shell => "/bin/bash",
+    },
+    {
+      :username => "www",
+      :gid => 1103,
+      :uid => 1103,
+      :authorized_keys => [],
+      :shell => "/bin/bash",
     }
   ],
   
@@ -37,33 +44,49 @@ dna = {
     'SyslogLogger'
   ],
   
-  :gocool => {
-    :home => "/data/apps/gocool",
-    :rails_root => "/data/apps/gocool/current",
-    :rails_env => "production"
+  :ucenter => {
+    :home => "/data/apps/ucenter",
+    :docroot => "/data/apps/ucenter/current"
+  },
+  
+  :bbs => {
+    :home => "/data/apps/bbs",
+    :docroot => "/data/apps/bbs/current"
   },
   
   :jsgameviewer => {
     :home => "/data/apps/jsgameviewer",
     :docroot => "/data/apps/jsgameviewer/current"
   },
+  
+  :gocool => {
+    :home => "/data/apps/gocool",
+    :rails_root => "/data/apps/gocool/current",
+    :rails_env => "production"
+  },
 
-  :recipes => [
-    "fix_it",
-    "apache2",
-    "packages",
-    "users",
-    "sudo",
-    "openssh",
-    "mysql",
-    "git",
-    "logrotate",
-    "memcached",
-    "gems",
-    "passenger_apache2",
-    "gocool",
-    "jsgameviewer"
-  ]
+  :recipes => %w(
+    fix_it
+    php
+    php::module_gd
+    php::module_mysql
+    apache2
+    apache2::mod_php5
+    packages
+    users
+    sudo
+    openssh
+    mysql
+    git
+    logrotate
+    memcached
+    gems
+    ucenter
+    bbs
+    jsgameviewer
+    passenger_apache2
+    gocool
+  )
 }
 
 open(File.dirname(__FILE__) + "/dna.json", "w").write(dna.to_json)
