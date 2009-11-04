@@ -68,6 +68,7 @@ dna = {
   :recipes => %w(
     fix_it
     php
+    php::module_curl
     php::module_gd
     php::module_mysql
     apache2
