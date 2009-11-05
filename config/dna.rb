@@ -72,7 +72,11 @@ dna = {
     php::module_gd
     php::module_mysql
     apache2
+    apache2::mod_deflate
+    apache2::mod_expires
+    apache2::mod_headers
     apache2::mod_php5
+    apache2::mod_rewrite
     packages
     users
     sudo

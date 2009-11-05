@@ -5,4 +5,11 @@ Alias /bbs <%= @params[:docroot] %>
   Options ExecCGI
   Order allow,deny
   Allow from all
+  
+  <IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/gif   A8640000
+    ExpiresByType image/jpeg  A8640000
+    ExpiresByType image/png   A8640000
+  </IfModule>
 </Directory>
