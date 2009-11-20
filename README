@@ -9,6 +9,7 @@ export EC2_HOME=~/tools/ec2-api-tools
 export PATH=$PATH:$EC2_HOME/bin
 export EC2_PRIVATE_KEY=~/.ec2/pk.pem
 export EC2_CERT=~/.ec2/cert.pem
+ssh-add ~/.ssh/ec2-keypair
 
 1.4 Create and download pk-????.pem and cert-????.pem, move to ~/.ec2, rename to pk.pem and cert.pem
 1.5 open new console and run

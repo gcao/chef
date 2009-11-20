@@ -30,6 +30,7 @@ dna = {
   ],
   
   :packages => [
+    "postfix"
   ],
   
   :gems => [
@@ -64,9 +65,17 @@ dna = {
     :rails_root => "/data/apps/gocool/current",
     :rails_env => "production"
   },
+  
+  :cronjobs => [
+    {
+      :name => "backup",
+      :day => "/data/apps/sysadmin/current/backup.py"
+    }
+  ],
 
   :recipes => %w(
     fix_it
+    cron
     php
     php::module_curl
     php::module_gd

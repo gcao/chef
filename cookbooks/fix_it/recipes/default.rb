@@ -25,4 +25,4 @@ fix_different_prefix
 fix_closed_stream
 
 # To fix    mv: cannot move `/var/lib/mysql' to `/db/mysql': No such file or directory
-`mkdir /db`
+`mkdir -p /db/mysql/log`
