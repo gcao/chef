@@ -1,10 +1,16 @@
 include_recipe "rails"
 
 # See http://seattlerb.rubyforge.org/SyslogLogger/
-`echo >> /etc/syslog.conf`
-`echo '!rails' >> /etc/syslog.conf`
-`echo '*.*  /var/log/gocool.log' >> /etc/syslog.conf`
-`touch /var/log/gocool.log`
+syslog_updated = false
+File.open("/etc/syslog.conf").each do |line|
+  syslog_updated = true and break if line.include?('gocool.log')
+end
+unless syslog_updated
+  `echo >> /etc/syslog.conf`
+  `echo '!rails' >> /etc/syslog.conf`
+  `echo '*.*  /var/log/gocool.log' >> /etc/syslog.conf`
+  `touch /var/log/gocool.log`
+end
 
 # Mysql setup
 # -----------
@@ -32,8 +38,10 @@ execute "create-empty-db-for-gocool" do
   command "mysql -u root -p#{node[:mysql_root_pass]} < /tmp/empty-gocool-db.sql"
 end
 
-puts "===================== disable default site ====================="
-`rm /etc/apache2/sites-enabled/000-default`
+# puts "===================== disable default site ====================="
+# `rm /etc/apache2/sites-enabled/000-default`
+
+`ln -s #{node[:gocool][:rails_root]}/public #{node[:gocool][:document_root]}/app`
 
 web_app "gocool" do
   template "gocool.conf.erb"

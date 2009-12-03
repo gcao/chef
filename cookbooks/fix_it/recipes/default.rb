@@ -26,3 +26,6 @@ fix_closed_stream
 
 # To fix    mv: cannot move `/var/lib/mysql' to `/db/mysql': No such file or directory
 `mkdir -p /db/mysql/log`
+
+# To fix    md5: command not found
+`ln -s /usr/bin/md5sum /usr/bin/md5`

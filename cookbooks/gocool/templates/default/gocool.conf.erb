@@ -4,7 +4,8 @@ PassengerRuby /usr/bin/ruby1.8
    
 <VirtualHost *:80>
   ServerName localhost
-  DocumentRoot <%= @params[:docroot] %>
+  DocumentRoot <%= @params[:document_root] %>
+  RailsBaseURI /app
 
   RailsEnv <%= @params[:rails_env] %>
   RailsAllowModRewrite on

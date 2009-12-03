@@ -30,7 +30,8 @@ dna = {
   ],
   
   :packages => [
-    "postfix"
+    "postfix",  # for sending email
+    "unzip"     # for decompress files
   ],
   
   :gems => [
@@ -42,7 +43,8 @@ dna = {
     'chriseppstein-compass',
     'mislav-will_paginate',
     'rspec',
-    'SyslogLogger'
+    'SyslogLogger',
+    'rubaidh-google_analytics'
   ],
   
   :ucenter => {
@@ -61,6 +63,7 @@ dna = {
   },
   
   :gocool => {
+    :document_root => "/var/www",
     :home => "/data/apps/gocool",
     :rails_root => "/data/apps/gocool/current",
     :rails_env => "production"
