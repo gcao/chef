@@ -41,7 +41,9 @@ end
 # puts "===================== disable default site ====================="
 # `rm /etc/apache2/sites-enabled/000-default`
 
-`ln -s #{node[:gocool][:rails_root]}/public #{node[:gocool][:document_root]}/app`
+`echo '<html><head><meta HTTP-EQUIV="REFRESH" content="0; url=http://www.go-cool.org/bbs/index.php"></head><body>Redirecting...</body></html>' > /var/www/index.html`
+
+`ln -s #{node[:gocool][:rails_root]}/public /var/www/app`
 
 web_app "gocool" do
   template "gocool.conf.erb"

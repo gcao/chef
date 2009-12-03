@@ -63,7 +63,6 @@ dna = {
   },
   
   :gocool => {
-    :document_root => "/var/www",
     :home => "/data/apps/gocool",
     :rails_root => "/data/apps/gocool/current",
     :rails_env => "production"
@@ -89,6 +88,7 @@ dna = {
     apache2::mod_headers
     apache2::mod_php5
     apache2::mod_rewrite
+    apache2::mod_proxy
     packages
     users
     sudo
