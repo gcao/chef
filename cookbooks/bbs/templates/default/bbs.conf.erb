@@ -1,7 +1,7 @@
 Alias /bbs <%= @params[:docroot] %>
 <Directory "<%= @params[:docroot] %>">
   DirectoryIndex index.html,index.php
-  AllowOverride All
+  AllowOverride None
   Options ExecCGI
   Order allow,deny
   Allow from all
@@ -12,4 +12,8 @@ Alias /bbs <%= @params[:docroot] %>
     ExpiresByType image/jpeg  A8640000
     ExpiresByType image/png   A8640000
   </IfModule>
+  
+  LogLevel info
+  ErrorLog <%= @node[:apache][:log_dir] %>/bbs-error.log
+  CustomLog <%= @node[:apache][:log_dir] %>/bbs-access.log combined
 </Directory>

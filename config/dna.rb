@@ -44,7 +44,8 @@ dna = {
     'mislav-will_paginate',
     'rspec',
     'SyslogLogger',
-    'rubaidh-google_analytics'
+    'rubaidh-google_analytics',
+    'binarylogic-searchlogic'
   ],
   
   :ucenter => {
