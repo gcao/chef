@@ -73,6 +73,11 @@ dna = {
     {
       :name => "backup",
       :day => "/data/apps/sysadmin/current/backup.py"
+    },
+    {
+      :name => "process_new_posts",
+      :minute => "0,30",
+      :command => "/usr/bin/curl http://localhost/app/misc/process_newer_posts"
     }
   ],
 
