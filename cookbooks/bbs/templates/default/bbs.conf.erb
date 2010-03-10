@@ -5,6 +5,14 @@ Alias /bbs <%= @params[:docroot] %>
   Options ExecCGI
   Order allow,deny
   Allow from all
+
+  <IfModule mod_security.c>
+    SecFilterEngine Off
+  </IfModule>
+  
+  <IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript
+  </IfModule>
   
   <IfModule mod_expires.c>
     ExpiresActive On
