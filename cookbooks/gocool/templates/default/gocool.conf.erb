@@ -30,7 +30,14 @@ PassengerRuby /usr/bin/ruby1.8
   </Directory>
 
   <IfModule mod_deflate.c>
-    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript
+  </IfModule>
+
+  <IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/gif  A86400000
+    ExpiresByType image/jpeg  A86400000
+    ExpiresByType image/png  A86400000
   </IfModule>
   
   RewriteEngine On
