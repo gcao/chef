@@ -29,9 +29,14 @@ dna = {
     }
   ],
   
+  :memcached => {
+    :memory => 256
+  },
+  
   :packages => [
     "postfix",  # for sending email
-    "unzip"     # for decompress files
+    "unzip",    # for decompress files
+    "htop",     # for monitoring (alternative to 'top')
   ],
   
   :gems => [
@@ -78,6 +83,21 @@ dna = {
       :name => "process_new_posts",
       :minute => "0,30",
       :command => "/usr/bin/curl http://localhost/app/misc/process_newer_posts"
+    },
+    # {
+    #   :name => "update_external_games",
+    #   :hour => "0,12",
+    #   :command => "RAILS_ENV=production /data/apps/gocool/current/bin/update_external_games"
+    # },
+    {
+      :name => "update_stat",
+      :hour => "0,12",
+      :command => "RAILS_ENV=production /usr/bin/ruby -rubygems /data/apps/gocool/current/bin/update_stat"
+    },
+    {
+      :name => "broadcast_tom",
+      :minute => "0",
+      :command => "RAILS_ENV=production /usr/bin/ruby -rubygems /data/apps/gocool/current/bin/broadcast_tom"
     }
   ],
 
