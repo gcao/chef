@@ -1,3 +1,3 @@
-source :gemcutter
+source :rubygems
 
-gem "chef", "0.7.12"
+gem "chef"

@@ -1,6 +1,6 @@
 REMOTE_CHEF_PATH = "/etc/chef" # Where to find upstream cookbooks
 
-ami_host = %x(ami_host).strip
+ami_host = %x(new_instance).strip
 
 desc "Setup AMI"
 task :setup_ami do
